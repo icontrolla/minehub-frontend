@@ -1,21 +1,21 @@
 steps:
   # Step 1: Install dependencies
   - name: 'gcr.io/cloud-builders/npm'
-    dir: 'minehub-frontend'   # This specifies that the npm commands will be executed inside the 'minehub-frontend' folder
+    dir: 'minehub-frontend'
     args: ['install']
 
   # Step 2: Build React app
   - name: 'gcr.io/cloud-builders/npm'
-    dir: 'minehub-frontend'   # Same here: build will run in the 'minehub-frontend' directory
+    dir: 'minehub-frontend'
     args: ['run', 'build']
 
   # Step 3: Deploy build output to your GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', 'minehub-frontend/', 'gs://minehub-frontend']
+    args: ['-m', 'rsync', '-r', 'minehub-frontend/build/', 'gs://minehub-frontend/']   # Added trailing slash to gs://minehub-frontend/
 
   # Step 4: Set GCS static website metadata
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend']
+    args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend/']   # Added trailing slash here as well
 
 images: []
 
