@@ -11,11 +11,11 @@ steps:
 
   # Step 3: Deploy build output to your GCS bucket
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['-m', 'rsync', '-r', 'minehub-frontend/build/', 'gs://minehub-frontend/']   # Added trailing slash to gs://minehub-frontend/
+    args: ['-m', 'rsync', '-r', './minehub-frontend/build/', 'gs://minehub-frontend/']
 
   # Step 4: Set GCS static website metadata
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend/']   # Added trailing slash here as well
+    args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend/']
 
 images: []
 
