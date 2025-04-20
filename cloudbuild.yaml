@@ -1,0 +1,23 @@
+steps:
+  # Step 1: Install dependencies
+  - name: 'gcr.io/cloud-builders/npm'
+    dir: 'minehub-frontend'
+    args: ['install']
+
+  # Step 2: Build React app
+  - name: 'gcr.io/cloud-builders/npm'
+    dir: 'minehub-frontend'
+    args: ['run', 'build']
+
+  # Step 3: Deploy build output to your GCS bucket
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'rsync', '-r', 'minehub-frontend/build/', 'gs://minehub-frontend']
+
+  # Step 4: Set GCS static website metadata (index.html and 404.html)
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend']
+
+images: []
+
+options:
+  logging: CLOUD_LOGGING_ONLY
