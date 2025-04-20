@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/minehub-frontend/static/css/main.bc213539.css",
+    "main.js": "/minehub-frontend/static/js/main.c0997bd9.js",
+    "static/js/453.4de02e24.chunk.js": "/minehub-frontend/static/js/453.4de02e24.chunk.js",
+    "index.html": "/minehub-frontend/index.html",
+    "main.bc213539.css.map": "/minehub-frontend/static/css/main.bc213539.css.map",
+    "main.c0997bd9.js.map": "/minehub-frontend/static/js/main.c0997bd9.js.map",
+    "453.4de02e24.chunk.js.map": "/minehub-frontend/static/js/453.4de02e24.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bc213539.css",
+    "static/js/main.c0997bd9.js"
+  ]
+}
