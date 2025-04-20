@@ -1,0 +1,20 @@
+steps:
+  # Step 1: Clone code (Cloud Build pulls your repo automatically, no need for extra clone step)
+
+  # Step 2: Install dependencies
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+
+  # Step 3: Build React app
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+
+  # Step 4: Deploy to GCS bucket
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['-m', 'rsync', '-r', 'build/', 'gs://minehub-frontend']
+
+  # Step 5: Set the static website metadata (optional but smart!)
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend']
+
+images: []
