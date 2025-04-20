@@ -18,3 +18,6 @@ steps:
     args: ['web', 'set', '-m', 'index.html', '-e', '404.html', 'gs://minehub-frontend']
 
 images: []
+
+options:
+  logging: CLOUD_LOGGING_ONLY
