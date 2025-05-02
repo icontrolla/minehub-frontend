@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: minehub-frontend
+    env: static
+    staticPublishPath: build
+    buildCommand: npm install && npm run build
+    branch: main  # or your deployment branch
