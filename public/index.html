@@ -14,8 +14,6 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
-    <!-- Auto-redirect to '/' if loaded as /index.html -->
     <script>
       if (window.location.pathname === "/index.html") {
         window.history.replaceState(null, "", "/");

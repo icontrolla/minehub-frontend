@@ -16,7 +16,7 @@ const Container = styled.div`
   font-family: 'Inter', sans-serif;
   background-color: #0d0d0d;
   color: #f0f0f0;
-  padding: 4rem 2rem;
+  padding: 2rem 1rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,14 +24,27 @@ const Container = styled.div`
 
 const Header = styled.header`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2.8rem;
+  font-size: 2rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.8rem;
+  }
+
   font-weight: 700;
   letter-spacing: -0.03em;
   background: linear-gradient(90deg, #ffc107, #fdfdfd);
@@ -42,12 +55,19 @@ const Title = styled.h1`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (min-width: 768px) {
+    gap: 2rem;
+    margin-top: 0;
+  }
 
   a {
     text-decoration: none;
     color: #bbbbbb;
-    font-size: 1rem;
+    font-size: 0.95rem;
     position: relative;
     transition: color 0.3s ease;
 
@@ -73,11 +93,16 @@ const Nav = styled.nav`
 `;
 
 const Tagline = styled.p`
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #bbbbbb;
   width: 100%;
   text-align: left;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+    text-align: right;
+  }
 `;
 
 const Main = styled.main`
@@ -98,8 +123,16 @@ const SectionTitle = styled.h2`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
 `;
 
 const Card = styled.div`
@@ -118,7 +151,12 @@ const Card = styled.div`
 
 const CardImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 180px;
+
+  @media (min-width: 768px) {
+    height: 200px;
+  }
+
   object-fit: cover;
   filter: brightness(0.95);
   transition: filter 0.3s ease;
@@ -150,31 +188,6 @@ const CardPrice = styled.p`
   color: #ffc107;
 `;
 
-
-
-
-
-
-
-const CartIconWrapper = styled.div`
-  position: relative;
-  cursor: pointer;
-`;
-
-const CartCount = styled.span`
-position: absolute;
-  top: -8px;
-  right: -10px;
-  background-color: #dc3545;
-  color: white;
-  font-size: 0.7rem;
-  padding: 2px 6px;
-  border-radius: 50%;
-  font-weight: bold;
-
-`;
-
-
 const ButtonGroup = styled.div`
   display: flex;
   justify-content: space-between;
@@ -198,11 +211,33 @@ const SmallButton = styled.button`
   }
 `;
 
+const CartIconWrapper = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
+
+const CartCount = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #dc3545;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+`;
 
 const Footer = styled.footer`
   text-align: center;
-  margin-top: 4rem;
-  font-size: 0.9rem;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+
+  @media (min-width: 768px) {
+    margin-top: 4rem;
+    font-size: 0.9rem;
+  }
+
   color: #777;
 `;
 
@@ -262,7 +297,6 @@ const HomePage = () => {
           <CardTitle>{machine.name}</CardTitle>
           <CardText>{machine.description}</CardText>
           <CardPrice>${machine.price}</CardPrice>
-
           <ButtonGroup>
             <SmallButton onClick={() => handleAddToCart(machine)}>
               Add to Cart
