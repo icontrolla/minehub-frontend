@@ -4,14 +4,15 @@ import styled, { keyframes } from 'styled-components';
 import { FaShoppingCart } from 'react-icons/fa';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://127.0.0.1:8000";
+const B2_IMAGE_BASE = process.env.REACT_APP_B2_IMAGE_BASE || "https://f005.backblazeb2.com/file/minehub/";
 
-// Animations
+// Animation
 const fadeIn = keyframes`
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 `;
 
-// Styled Components
+// Styled components
 const Container = styled.div`
   font-family: 'Inter', sans-serif;
   background-color: #0d0d0d;
@@ -40,17 +41,16 @@ const Header = styled.header`
 
 const Title = styled.h1`
   font-size: 2rem;
-
-  @media (min-width: 768px) {
-    font-size: 2.8rem;
-  }
-
   font-weight: 700;
   letter-spacing: -0.03em;
   background: linear-gradient(90deg, #ffc107, #fdfdfd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 2.8rem;
+  }
 `;
 
 const Nav = styled.nav`
@@ -241,6 +241,13 @@ const Footer = styled.footer`
   color: #777;
 `;
 
+// Helper to build image URL
+function getB2ImageUrl(filename) {
+  return filename
+    ? B2_IMAGE_BASE + encodeURIComponent(filename)
+    : "https://via.placeholder.com/400x200?text=No+Image";
+}
+
 // Component
 const HomePage = () => {
   const [drillingMachines, setDrillingMachines] = useState([]);
@@ -292,18 +299,14 @@ const HomePage = () => {
   const renderMachineCards = (machines) =>
     machines.map((machine) => (
       <Card key={machine.id}>
-        <CardImage src={machine.image} alt={machine.name} />
+        <CardImage src={getB2ImageUrl(machine.image)} alt={machine.name} />
         <CardBody>
           <CardTitle>{machine.name}</CardTitle>
           <CardText>{machine.description}</CardText>
           <CardPrice>${machine.price}</CardPrice>
           <ButtonGroup>
-            <SmallButton onClick={() => handleAddToCart(machine)}>
-              Add to Cart
-            </SmallButton>
-            <SmallButton buy onClick={() => handleBuyNow(machine)}>
-              Buy Now
-            </SmallButton>
+            <SmallButton onClick={() => handleAddToCart(machine)}>Add to Cart</SmallButton>
+            <SmallButton buy onClick={() => handleBuyNow(machine)}>Buy Now</SmallButton>
           </ButtonGroup>
         </CardBody>
       </Card>
