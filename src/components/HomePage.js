@@ -3,6 +3,8 @@ import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 import { FaShoppingCart } from 'react-icons/fa';
 
+
+
 const B2_IMAGE_BASE = process.env.REACT_APP_B2_IMAGE_BASE || "https://f005.backblazeb2.com/file/minehub/";
 const API_BASE_URL = "https://minehub-backend-uvob.onrender.com";
 
