@@ -261,10 +261,10 @@ const HomePage = () => {
     const fetchMachines = async () => {
       try {
         const [drRes, exRes, loRes, ttRes] = await Promise.all([
-          axios.get(`${API_BASE_URL}/api/drilling-machines/`),
-          axios.get(`${API_BASE_URL}/api/excavators/`),
-          axios.get(`${API_BASE_URL}/api/loaders/`),
-          axios.get(`${API_BASE_URL}/api/transport-trucks/`),
+          axios.get(`${API_BASE_URL}/api/`),
+          axios.get(`${API_BASE_URL}/api/`),
+          axios.get(`${API_BASE_URL}/api/`),
+          axios.get(`${API_BASE_URL}/api/`),
         ]);
         setDrillingMachines(drRes.data);
         setExcavators(exRes.data);
