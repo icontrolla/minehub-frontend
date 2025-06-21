@@ -3,17 +3,18 @@ import axios from 'axios';
 import styled, { keyframes } from 'styled-components';
 import { FaShoppingCart } from 'react-icons/fa';
 
+
+
 const B2_IMAGE_BASE = process.env.REACT_APP_B2_IMAGE_BASE || "https://f005.backblazeb2.com/file/minehub/";
 const API_BASE_URL = "https://minehub-backend-uvob.onrender.com";
 
 
-// Animation
 const fadeIn = keyframes`
   0% { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: translateY(0); }
 `;
 
-// Styled components
+// Styled Components
 const Container = styled.div`
   font-family: 'Inter', sans-serif;
   background-color: #0d0d0d;
@@ -242,11 +243,18 @@ const Footer = styled.footer`
   color: #777;
 `;
 
-// Helper to build image URL
+// ✅ Updated image URL builder
 function getB2ImageUrl(filename) {
-  return filename
-    ? B2_IMAGE_BASE + encodeURIComponent(filename)
-    : "https://via.placeholder.com/400x200?text=No+Image";
+  if (!filename) {
+    return "https://via.placeholder.com/400x200?text=No+Image";
+  }
+
+  // If the filename is already a full URL, don't encode
+  if (filename.startsWith("http")) {
+    return filename;
+  }
+
+  return B2_IMAGE_BASE + encodeURIComponent(filename);
 }
 
 // Component
